@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skeleton Sprint</title>
+<style>
+body{font-family:Arial;text-align:center;background:#111;color:#fff}
+#game{position:relative;margin:80px auto;width:500px;height:200px;border:2px solid #fff;overflow:hidden}
+#skeleton{position:absolute;bottom:10px;left:40px;width:40px;height:40px;background:#ccc;border-radius:8px;transition:.2s}
+#bone{position:absolute;bottom:10px;right:-40px;width:30px;height:30px;background:#9c7}
+.jump{transform:translateY(-80px)}
+</style>
+</head>
+<body>
+
+<h2>Skeleton Sprint</h2>
+<p>Tap / Click To Jump</p>
+
+<div id="game">
+  <div id="skeleton"></div>
+  <div id="bone"></div>
+</div>
+
+<script>
+let s=document.getElementById("skeleton");
+let b=document.getElementById("bone");
+let jump=false,score=0;
+
+document.onclick=()=>{if(!jump){jump=true;s.classList.add("jump");setTimeout(()=>{s.classList.remove("jump");jump=false},500)}}
+
+setInterval(()=>{
+  let br=b.getBoundingClientRect(),sr=s.getBoundingClientRect();
+  if(br.left<sr.right && br.right>sr.left && sr.bottom>br.top) alert("Game Over! Score: "+score),score=0;
+  score++;
+},80);
+
+function move(){
+  b.style.right="-40px";
+  b.animate([{right:"-40px"},{right:"520px"}],{duration:1500}).onfinish=move;
+}
+move();
+</script>
+
+</body>
+</html>
