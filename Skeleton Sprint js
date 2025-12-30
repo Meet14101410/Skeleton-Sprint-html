@@ -1,0 +1,29 @@
+const s = document.getElementById("skeleton");
+const b = document.getElementById("bone");
+let jumping = false, score = 0;
+
+document.onclick = () => {
+  if (!jumping) {
+    jumping = true;
+    s.classList.add("jump");
+    setTimeout(() => {
+      s.classList.remove("jump");
+      jumping = false;
+    }, 500);
+  }
+};
+
+function moveBone(){
+  b.style.right = "-40px";
+  b.animate([{right:"-40px"},{right:"520px"}],{duration:1500})
+   .onfinish = moveBone;
+}
+moveBone();
+
+setInterval(() => {
+  const sr = s.getBoundingClientRect();
+  const br = b.getBoundingClientRect();
+  if (br.left < sr.right && br.right > sr.left && sr.bottom > br.top)
+    alert("Game Over! Score: " + score), score = 0;
+  score++;
+}, 80);
