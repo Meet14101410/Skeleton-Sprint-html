@@ -1,0 +1,39 @@
+body{
+  font-family:Arial;
+  text-align:center;
+  background:#111;
+  color:#fff;
+}
+
+#game{
+  position:relative;
+  margin:80px auto;
+  width:500px;
+  height:200px;
+  border:2px solid #fff;
+  overflow:hidden;
+}
+
+#skeleton{
+  position:absolute;
+  bottom:10px;
+  left:40px;
+  width:40px;
+  height:40px;
+  background:#ccc;
+  border-radius:8px;
+  transition:.2s;
+}
+
+#bone{
+  position:absolute;
+  bottom:10px;
+  right:-40px;
+  width:30px;
+  height:30px;
+  background:#9c7;
+}
+
+.jump{
+  transform:translateY(-80px);
+}
